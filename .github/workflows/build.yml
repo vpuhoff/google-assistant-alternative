@@ -102,7 +102,7 @@ jobs:
       shell: bash
       run: |
         cd dist
-        mv app* ${{ matrix.output_name }}
+        mv -n app* "${{ matrix.output_name }}"
     
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
