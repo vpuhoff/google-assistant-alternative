@@ -1,0 +1,47 @@
+name: Build and Deploy Streamlit App
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller
+        pip install streamlit
+        pip install -r requirements.txt
+    
+    - name: Create Streamlit config
+      run: |
+        mkdir -p ~/.streamlit
+        echo '[server]
+        headless = true
+        port = 8501' > ~/.streamlit/config.toml
+    
+    - name: Build executable
+      run: |
+        pyinstaller --onefile --add-data "$(python -c 'import streamlit; print(streamlit.__path__[0])')/:streamlit" app.py
+    
+    - name: Create Release
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          dist/*
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
