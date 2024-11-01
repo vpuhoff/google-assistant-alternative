@@ -1,4 +1,3 @@
-# register_device.py
 import json
 import os
 from pathlib import Path
@@ -62,7 +61,8 @@ def authenticate():
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
                 'credentials.json', SCOPES)
-            creds = flow.run_local_server(port=0)
+            port = int(os.environ.get("OAUTH_PORT", 0))
+            creds = flow.run_local_server(port=port)
             
         token_data = {
             'token': creds.token,

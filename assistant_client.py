@@ -34,7 +34,7 @@ class GoogleAssistantClient:
             config = json.load(f)
             self.device_model_id = config['device_model_id']
             self.device_id = config['device_id']
-            print(f"Loaded device config: model_id={self.device_model_id}, device_id={self.device_id}")
+            #print(f"Loaded device config: model_id={self.device_model_id}, device_id={self.device_id}")
 
     def play_audio(self, audio_data):
         """Play audio response"""
