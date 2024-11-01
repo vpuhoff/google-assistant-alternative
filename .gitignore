@@ -5,3 +5,8 @@ credentials.json
 device_config.json
 token.json
 conversation_state.bin
+build/*
+dist/*
+app.exe
+app.spec
+GoogleAssistant.exe
