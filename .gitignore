@@ -8,5 +8,4 @@ conversation_state.bin
 build/*
 dist/*
 app.exe
-app.spec
 GoogleAssistant.exe
