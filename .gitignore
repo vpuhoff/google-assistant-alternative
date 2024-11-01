@@ -1,0 +1,7 @@
+__pycache__/*
+*.pyc
+venv
+credentials.json
+device_config.json
+token.json
+conversation_state.bin

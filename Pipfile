@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+grpcio = "*"
+google-auth-httplib2= "*"
+google-api-python-client= "*"
+grpcio-tools= "*"
+google-assistant-sdk = {extras = ["samples"], version = "*"}
+google-auth-oauthlib = {extras = ["tool"], version = "*"}
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
