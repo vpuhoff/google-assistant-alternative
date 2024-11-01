@@ -90,14 +90,13 @@ jobs:
           --hidden-import=PIL._tkinter_finder \
           --hidden-import=google.protobuf.internal.builder \
           --add-data "$(python -c 'import streamlit; print(streamlit.__path__[0])')/:streamlit" \
-          --add-data "./proto:./proto" \
           app.py
     
     - name: Build executable (Windows)
       if: matrix.os == 'windows-latest'
       run: |
         $streamlitPath = python -c "import streamlit; print(streamlit.__path__[0])"
-        pyinstaller --onefile --add-data "$streamlitPath;streamlit" --add-data "proto;proto" --hidden-import=google.protobuf.internal.builder app.py
+        pyinstaller --onefile --add-data "$streamlitPath;streamlit" --hidden-import=google.protobuf.internal.builder app.py
     
     - name: Rename artifacts
       shell: bash
